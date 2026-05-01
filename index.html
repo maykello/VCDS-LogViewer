@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCDS / VAG Log Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+<body>
+
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <h1>VCDS Analyzer</h1>
+            <div class="file-upload-wrapper">
+                <div class="file-upload-btn" id="upload-btn-text">Upload VCDS CSV Log</div>
+                <input type="file" id="csv-file" accept=".csv">
+            </div>
+            <div style="margin-top: 15px; font-size: 0.8rem; color: #888;">
+                Select parameters to display:
+            </div>
+        </div>
+        <div id="parameter-list">
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div id="stats-panel" style="display: none;">
+            <div style="display: flex; gap: 25px;">
+                <div class="stat-box">
+                    <span class="stat-label">V-MAX in log</span>
+                    <span class="stat-value" id="stat-vmax">-- km/h</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Max Injection / Boost</span>
+                    <span class="stat-value" id="stat-fuel">-- mg <span style="font-size: 0.8rem; color: #aaa; font-weight: normal;">at</span> -- mbar</span>
+                </div>
+            </div>
+
+            <div class="calc-tool">
+                <span class="stat-label" style="margin:0 10px 0 0; color:#fff;">Acceleration Calculator:</span>
+                From <input type="number" id="accel-start" value="0">
+                to <input type="number" id="accel-end" value="100"> km/h
+                <button id="calc-accel-btn">Calculate</button>
+                <div id="accel-result">-- s</div>
+            </div>
+        </div>
+
+        <div id="placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            <h2>Upload file on the left</h2>
+            <p>Chart and statistics will be generated automatically.</p>
+        </div>
+        
+        <div id="chart-wrapper">
+            <div id="chart-container"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
